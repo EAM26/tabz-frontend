@@ -1,9 +1,7 @@
-import React from 'react';
-
-function UserPage(props) {
+function UserPage() {
     return (
         <div>
-            Test
+
         </div>
     );
 }

@@ -1,13 +1,27 @@
 function NavBar() {
     return (
-        <div className="flex bg-[#15472c] py-4">
-            {/*<button className="pl-5">*/}
-            {/*    <img className="size-9" src="/square-menu.svg" alt="menu"/>*/}
-            {/*</button>*/}
-            <img className="pl-4 size-22" src="/tabz-logo.svg" alt="tabzlogo"/>
-            <h1 className="pl-1 pt-8 text-white font-montserrat font-semibold text-2xl">TABZ</h1>
-            <img className="mr-0 ml-auto pr-5" src="/circle-user.svg" alt="userlogo"/>
+        <div className="flex items-center bg-[#15472c] px-5 py-4">
+            <button>
+                <img className="size-9" src="/square-menu.svg" alt="menu"/>
+            </button>
 
+            <div className="ml-5 flex items-center gap-0">
+                <img
+                    className="size-12"
+                    src="/tabz-logo.svg"
+                    alt="TABZ logo"
+                />
+
+                <h2 className="mt-2 text-xl font-semibold text-white font-montserrat">
+                    TABZ
+                </h2>
+            </div>
+
+            <img
+                className="ml-auto size-8"
+                src="/circle-user.svg"
+                alt="userlogo"
+            />
         </div>
     );
 }
