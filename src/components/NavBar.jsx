@@ -19,7 +19,7 @@ function NavBar() {
 
             <img
                 className="ml-auto size-8"
-                src="/circle-user.svg"
+                src="/user-wh.svg"
                 alt="userlogo"
             />
         </div>
