@@ -1,4 +1,4 @@
-function NavBar() {
+function NavBarApp() {
     return (
         <div className="flex items-center bg-[#15472c] px-5 py-4">
             <button>
@@ -26,4 +26,4 @@ function NavBar() {
     );
 }
 
-export default NavBar;
+export default NavBarApp;
