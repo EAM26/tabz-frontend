@@ -1,4 +1,5 @@
 import {useState} from "react";
+import api from "../services/api.js";
 
 
 
@@ -6,13 +7,30 @@ function Login() {
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const [error, setError] = useState("");
+    const [message, setMessage] = useState("");
 
-    function handleSubmit(event) {
+    async function handleSubmit(event) {
         event.preventDefault();
+
+        setError("");
+        setMessage("");
 
         const loginRequest = {
             username: username,
             password: password,
+        };
+
+        try {
+            const response = await api.post("http://localhost:8080/api/auth/authenticate", loginRequest);
+            localStorage.setItem("token", response.data.token);
+            setMessage("Login successfull");
+        } catch (error) {
+            if(error.response?.status ===401) {
+                setError("Invalid username or password");
+                return;
+            }
+            setError("Something went wrong. Please try again.")
         }
 
         console.log("username: " + username);
@@ -34,7 +52,8 @@ function Login() {
                             type="text"
                             value={username}
                             onChange={(event) => setUsername(event.target.value)}
-                            placeholder="you@example.com"
+                            placeholder="Enter your username"
+                            autoComplete="username"
                         />
                     </div>
                     <div className="flex flex-col">
@@ -44,9 +63,12 @@ function Login() {
                             type="password"
                             value={password}
                             onChange={(event) => setPassword(event.target.value)}
-                            placeholder="you@example.com"
+                            placeholder="Enter your password"
+                            autoComplete="current-password"
                         />
                     </div>
+                    {error && <p className="text-red-600">{error}</p>}
+                    {message && <p className="text-green-700">{message}</p>}
                     <button className="bg-tabz-dark px-6 text-white" type="submit">Log in</button>
                 </form>
             </div>
