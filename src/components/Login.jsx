@@ -1,10 +1,13 @@
 import {useState} from "react";
 import api from "../services/api.js";
+import {useAuth} from "../context/AuthContext.jsx";
+import{useNavigate} from "react-router-dom";
 
 
 
 function Login() {
-
+    const { login } = useAuth();
+    const navigate = useNavigate();
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
@@ -22,8 +25,10 @@ function Login() {
         };
 
         try {
-            const response = await api.post("http://localhost:8080/api/auth/authenticate", loginRequest);
-            localStorage.setItem("token", response.data.token);
+            const response = await api.post("/api/auth/authenticate", loginRequest);
+            // localStorage.setItem("token", response.data.token);
+            login(response.data.token);
+            navigate("/user")
             setMessage("Login successfull");
         } catch (error) {
             if(error.response?.status ===401) {

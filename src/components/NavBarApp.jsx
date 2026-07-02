@@ -1,4 +1,9 @@
+import {useAuth } from "../context/AuthContext.jsx";
+
 function NavBarApp() {
+
+    const { isLoggedIn, logout } = useAuth();
+
     return (
         <div className="flex items-center bg-[#15472c] px-5 py-4">
             <button>
@@ -16,12 +21,16 @@ function NavBarApp() {
                     TABZ
                 </h2>
             </div>
-
-            <img
-                className="ml-auto size-8"
-                src="/user-wh.svg"
-                alt="userlogo"
-            />
+            <div className="ml-auto flex items-center gap-3">
+                {isLoggedIn && (
+                    <button className="text-white text-sm" type="button" onClick={logout}>
+                        Log out
+                    </button>
+                )}
+                <button type="button" onClick={()=> console.log("profile button clicked.")}>
+                    <img className="size-8" src="/user-wh.svg" alt="userlogo" />
+                </button>
+            </div>
         </div>
     );
 }
