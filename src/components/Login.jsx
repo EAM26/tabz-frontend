@@ -37,9 +37,6 @@ function Login() {
             }
             setError("Something went wrong. Please try again.")
         }
-
-        console.log("username: " + username);
-        console.log("password: " + password);
     }
 
     return (

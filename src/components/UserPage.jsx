@@ -1,8 +1,39 @@
+import {useEffect, useState} from "react";
+import api from "../services/api.js";
+
 function UserPage() {
+
+    const [userName, setUserName] = useState("");
+    const [error, setError] = useState("");
+    const [message, setMessage] = useState("");
+
+    useEffect(() => {
+
+        async function loadUser() {
+            try {
+                const response = await api.get("/api/user/me");
+                setUserName(response.data.username);
+                console.log(response.data);
+                console.log(userName);
+
+
+            } catch (e) {
+                setError("Something went wrong.");
+                console.error(e);
+            }
+            console.log("use effect triggered");
+
+
+
+        }
+
+        loadUser();
+
+    }, [])
     return (
         <div>
             <div className="flex">
-                <h2>Hello Jan!</h2>
+                <h2>Hello {userName}!</h2>
                 <img src="/clapping.svg" alt="clapping logo"/>
             </div>
             <h4>This is your overview</h4>
@@ -14,7 +45,7 @@ function UserPage() {
                 </div>
                 <div>
                     <p>Username</p>
-                    <p>Jan</p>
+                    <p>{userName}</p>
 
                     <p>E-mail address</p>
                     <p>jan@gmail.com</p>
