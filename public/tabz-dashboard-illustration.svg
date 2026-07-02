@@ -1,0 +1,73 @@
+<svg width="720" height="420" viewBox="0 0 720 420" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">TABZ dashboard illustration</title>
+  <desc id="desc">A flat green illustration of a laptop dashboard with a small plant next to it.</desc>
+  <rect width="720" height="420" fill="none"/>
+
+  <!-- soft background blobs -->
+  <ellipse cx="342" cy="217" rx="206" ry="142" fill="#E6F0E8"/>
+  <ellipse cx="214" cy="242" rx="112" ry="84" fill="#EEF4EF"/>
+  <ellipse cx="505" cy="185" rx="118" ry="94" fill="#EEF4EF"/>
+
+  <!-- ground shadow -->
+  <ellipse cx="359" cy="337" rx="270" ry="24" fill="#DCEBDE" opacity="0.75"/>
+
+  <!-- laptop base -->
+  <path d="M148 304H486L526 334C531 338 528 346 521 346H113C106 346 103 338 108 334L148 304Z" fill="#15472C"/>
+  <path d="M229 316H403L415 326H217L229 316Z" fill="#2F7D4F"/>
+  <path d="M112 334H522C528 334 531 346 520 346H114C103 346 106 334 112 334Z" fill="#0E3A22"/>
+
+  <!-- laptop screen -->
+  <rect x="147" y="81" width="340" height="236" rx="18" fill="#15472C"/>
+  <rect x="168" y="104" width="298" height="188" rx="10" fill="#F7FAF7"/>
+
+  <!-- screen header -->
+  <rect x="168" y="104" width="298" height="38" rx="10" fill="#EEF4EF"/>
+  <circle cx="191" cy="123" r="5" fill="#2F7D4F"/>
+  <circle cx="209" cy="123" r="5" fill="#C8D3CB"/>
+  <circle cx="227" cy="123" r="5" fill="#C8D3CB"/>
+
+  <!-- dashboard card left -->
+  <rect x="190" y="164" width="108" height="92" rx="10" fill="#FFFFFF" stroke="#DDE5DF" stroke-width="3"/>
+  <rect x="208" y="220" width="12" height="20" rx="3" fill="#DCEBDE"/>
+  <rect x="228" y="202" width="12" height="38" rx="3" fill="#2F7D4F"/>
+  <rect x="248" y="184" width="12" height="56" rx="3" fill="#15472C"/>
+  <path d="M205 202L224 188L242 194L266 166" stroke="#2F7D4F" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- dashboard list right -->
+  <rect x="322" y="164" width="116" height="12" rx="6" fill="#C8D3CB"/>
+  <rect x="322" y="194" width="94" height="10" rx="5" fill="#DDE5DF"/>
+  <rect x="322" y="222" width="112" height="10" rx="5" fill="#DDE5DF"/>
+  <rect x="322" y="250" width="76" height="10" rx="5" fill="#DDE5DF"/>
+  <circle cx="300" cy="199" r="8" fill="#DCEBDE"/>
+  <circle cx="300" cy="227" r="8" fill="#DCEBDE"/>
+  <circle cx="300" cy="255" r="8" fill="#DCEBDE"/>
+
+  <!-- small document badge -->
+  <rect x="367" y="118" width="74" height="74" rx="12" fill="#FFFFFF" stroke="#DDE5DF" stroke-width="3"/>
+  <path d="M394 136H416L428 148V176H394V136Z" fill="#EAF2EC" stroke="#2F7D4F" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M416 136V149H428" stroke="#2F7D4F" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M401 159H421" stroke="#15472C" stroke-width="3" stroke-linecap="round"/>
+  <path d="M401 169H416" stroke="#15472C" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- plant pot -->
+  <path d="M547 269H628L616 344H559L547 269Z" fill="#2F7D4F"/>
+  <path d="M558 288H617L611 326H564L558 288Z" fill="#24663F" opacity="0.55"/>
+  <rect x="541" y="253" width="93" height="26" rx="8" fill="#15472C"/>
+
+  <!-- plant stems -->
+  <path d="M586 254C586 220 583 187 566 155" stroke="#15472C" stroke-width="8" stroke-linecap="round"/>
+  <path d="M590 254C604 217 621 189 648 166" stroke="#15472C" stroke-width="8" stroke-linecap="round"/>
+  <path d="M584 254C565 228 546 212 518 202" stroke="#15472C" stroke-width="8" stroke-linecap="round"/>
+
+  <!-- leaves -->
+  <path d="M548 132C577 141 586 166 571 188C540 178 531 153 548 132Z" fill="#2F7D4F"/>
+  <path d="M665 139C671 174 651 194 624 191C618 157 638 138 665 139Z" fill="#2F7D4F"/>
+  <path d="M512 180C544 180 559 203 549 228C516 228 501 205 512 180Z" fill="#2F7D4F"/>
+  <path d="M601 198C629 206 638 230 622 250C594 241 585 218 601 198Z" fill="#24663F"/>
+  <path d="M558 218C535 234 510 228 500 205C523 189 549 195 558 218Z" fill="#24663F"/>
+
+  <!-- decorative dots -->
+  <circle cx="106" cy="138" r="9" fill="#DCEBDE"/>
+  <circle cx="586" cy="91" r="7" fill="#DCEBDE"/>
+  <circle cx="636" cy="106" r="5" fill="#C8D3CB"/>
+</svg>

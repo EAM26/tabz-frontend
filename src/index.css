@@ -1,1 +1,36 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik+Glitch&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap");
+
 @import "tailwindcss";
+
+html,
+body,
+#root {
+    min-height: 100%;
+    margin: 0;
+}
+
+
+
+@theme {
+    --font-glitch: "Rubik Glitch", system-ui, sans-serif;
+    --font-poppins: "Poppins", system-ui, sans-serif;
+    --font-montserrat: "Montserrat", ui-sans-serif, system-ui, sans-serif;
+}
+
+@theme {
+    --color-tabz-dark: #15472C;
+    --color-tabz-dark-hover: #0E3A22;
+    --color-tabz-primary: #2F7D4F;
+    --color-tabz-primary-hover: #24663F;
+    --color-tabz-background: #F7FAF7;
+    --color-tabz-surface: #FFFFFF;
+    --color-tabz-soft: #EEF4EF;
+    --color-tabz-border: #DDE5DF;
+    --color-tabz-text: #17211A;
+    --color-tabz-muted: #66736A;
+    --color-tabz-placeholder: #9AA5A0;
+    --color-tabz-link: #1F5C38;
+}
+
