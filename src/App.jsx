@@ -7,7 +7,7 @@ import NavBarApp from "./components/NavBarApp.jsx";
 import Footer from "./components/Footer.jsx";
 
 function App() {
-    const { isLoggedIn, logout } = useAuth();
+    const { isLoggedIn } = useAuth();
 
     return (
         <BrowserRouter>
@@ -16,11 +16,6 @@ function App() {
 
                 <main className="flex-1">
                     <Routes>
-                        {/*
-                            Route voor "/":
-                            Ingelogd?  → ga naar /user
-                            Niet ingelogd? → ga naar /login
-                        */}
                         <Route
                             path="/"
                             element={
@@ -28,7 +23,6 @@ function App() {
                             }
                         />
 
-                        {/* Loginpagina — alleen zichtbaar als NIET ingelogd */}
                         <Route
                             path="/login"
                             element={
@@ -38,7 +32,6 @@ function App() {
                             }
                         />
 
-                        {/* Beveiligde pagina — alleen zichtbaar als WEL ingelogd */}
                         <Route
                             path="/user"
                             element={
