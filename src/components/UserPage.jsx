@@ -7,7 +7,7 @@ function UserPage() {
             </div>
             <h4>This is your overview</h4>
 
-            <card>
+            <section>
                 <div>
                     <img src="/user-gr.svg" alt="user logo"/>
                     <h5>Your details</h5>
@@ -19,9 +19,9 @@ function UserPage() {
                     <p>E-mail address</p>
                     <p>jan@gmail.com</p>
                 </div>
-            </card>
+            </section>
 
-            <card>
+            <section>
                 <div>
                     <img src="/chart.svg" alt="chart logo"/>
                     <h5>Your tabs</h5>
@@ -56,7 +56,7 @@ function UserPage() {
                     </tbody>
                 </table>
 
-            </card>
+            </section>
         </div>
 
     );
