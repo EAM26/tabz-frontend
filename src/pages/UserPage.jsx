@@ -6,6 +6,8 @@ function UserPage() {
     const [userData, setUserData] = useState(null);
     const [error, setError] = useState("");
     const [isLoading, setIsLoading] = useState(true);
+    const [openActionTabId, setOpenActionTabId] = useState(null);
+    const [downloadError, setDownloadError] = useState("");
 
     useEffect(() => {
         async function loadUser() {
@@ -34,6 +36,48 @@ function UserPage() {
             style: "currency",
             currency: "EUR",
         }).format(amount);
+    }
+
+    async function downloadTab(tabId) {
+        setDownloadError("");
+
+        try {
+            const response = await api.get(`/api/tab/${tabId}/download`, {
+                responseType: "blob",
+            });
+
+            const file = new Blob([response.data], {
+                type: "application/pdf",
+            });
+
+            const fileUrl = window.URL.createObjectURL(file);
+            const link = document.createElement("a");
+
+            link.href = fileUrl;
+            link.download = `tab-${tabId}.pdf`;
+
+            document.body.appendChild(link);
+            link.click();
+
+            link.remove();
+            window.URL.revokeObjectURL(fileUrl);
+
+            setOpenActionTabId(null);
+        } catch (error) {
+            console.error(error);
+
+            if (error.response?.status === 403) {
+                setDownloadError("You are not allowed to download this tab.");
+                return;
+            }
+
+            if (error.response?.status === 404) {
+                setDownloadError("This tab file could not be found.");
+                return;
+            }
+
+            setDownloadError("Something went wrong while downloading the tab.");
+        }
     }
 
     if (isLoading) {
@@ -155,6 +199,12 @@ function UserPage() {
                             </p>
                         </div>
 
+                        {downloadError && (
+                            <p className="mt-6 rounded-xl bg-red-50 px-4 py-3 text-sm font-medium text-red-700">
+                                {downloadError}
+                            </p>
+                        )}
+
                         <div className="mt-8 overflow-hidden rounded-2xl border border-tabz-border">
                             <div className="overflow-x-auto">
                                 <table className="w-full min-w-[620px] border-collapse text-left">
@@ -194,18 +244,33 @@ function UserPage() {
                                                     {formatToStandard(tab.createdAt)}
                                                 </td>
 
-                                                <td className="px-5 py-4">
-                                                    <button
-                                                        className="ml-auto flex h-9 w-9 items-center justify-center rounded-full hover:bg-tabz-soft"
-                                                        type="button"
-                                                        aria-label="Open tab actions"
-                                                    >
-                                                        <img
-                                                            className="h-5 w-5"
-                                                            src="/dots-vert.svg"
-                                                            alt=""
-                                                        />
-                                                    </button>
+                                                <td className="px-5 py-4 align-top">
+                                                    <div className="flex flex-col items-end gap-2">
+                                                        <button
+                                                            className="flex h-9 w-9 items-center justify-center rounded-full hover:bg-tabz-soft"
+                                                            type="button"
+                                                            aria-label="Open tab actions"
+                                                            onClick={() =>
+                                                                setOpenActionTabId(openActionTabId === tab.id ? null : tab.id)
+                                                            }
+                                                        >
+                                                            <img
+                                                                className="h-5 w-5"
+                                                                src="/dots-vert.svg"
+                                                                alt=""
+                                                            />
+                                                        </button>
+
+                                                        {openActionTabId === tab.id && (
+                                                            <button
+                                                                className="rounded-xl border border-tabz-border bg-white px-4 py-2 text-sm font-semibold text-tabz-dark shadow-sm hover:bg-tabz-soft"
+                                                                type="button"
+                                                                onClick={() => downloadTab(tab.id)}
+                                                            >
+                                                                Download Tab
+                                                            </button>
+                                                        )}
+                                                    </div>
                                                 </td>
                                             </tr>
                                         ))
