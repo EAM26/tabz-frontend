@@ -1,9 +1,10 @@
 import {useEffect, useState} from "react";
 import api from "../services/api.js";
+import formatToStandard from "../utils/DateTimeFormatter.js";
 
 function UserPage() {
 
-    const [userName, setUserName] = useState("");
+    const [userData, setUserData] = useState("");
     const [error, setError] = useState("");
     const [message, setMessage] = useState("");
 
@@ -12,16 +13,15 @@ function UserPage() {
         async function loadUser() {
             try {
                 const response = await api.get("/api/user/me");
-                setUserName(response.data.username);
+                setUserData(response.data);
                 console.log(response.data);
-                console.log(userName);
+                console.log(userData);
 
 
             } catch (e) {
                 setError("Something went wrong.");
                 console.error(e);
             }
-            console.log("use effect triggered");
 
 
 
@@ -33,7 +33,7 @@ function UserPage() {
     return (
         <div>
             <div className="flex">
-                <h2>Hello {userName}!</h2>
+                <h2>Hello {userData.username}!</h2>
                 <img src="/clapping.svg" alt="clapping logo"/>
             </div>
             <h4>This is your overview</h4>
@@ -45,10 +45,10 @@ function UserPage() {
                 </div>
                 <div>
                     <p>Username</p>
-                    <p>{userName}</p>
+                    <p>{userData.username}</p>
 
                     <p>E-mail address</p>
-                    <p>jan@gmail.com</p>
+                    <p>{userData.email}</p>
                 </div>
             </section>
 
@@ -66,25 +66,37 @@ function UserPage() {
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>Hema</td>
-                        <td>€ 45.25</td>
-                        <td>24-06-2026</td>
-                        <td><img src="/dots-vert.svg" alt="vertical dots"/></td>
-                    </tr>
-                    <tr>
-                        <td>Hema</td>
-                        <td>€ 45.25</td>
-                        <td>24-06-2026</td>
-                        <td><img src="/dots-vert.svg" alt="vertical dots"/></td>
-                    </tr>
-                    <tr>
-                        <td>Hema</td>
-                        <td>€ 45.25</td>
-                        <td>24-06-2026</td>
-                        <td><img src="/dots-vert.svg" alt="vertical dots"/></td>
-                    </tr>
+                    {userData?.tabs?.map((tab) => (
+                        <tr key={tab.id}>
+                            <td>{tab.shopName}</td>
+                            <td>€ {tab.totalAmount}</td>
+                            <td>{formatToStandard(tab.createdAt)}</td>
+                            <td>
+                                <img src="/dots-vert.svg" alt="vertical dots" />
+                            </td>
+                        </tr>
+                    ))}
                     </tbody>
+                    {/*<tbody>*/}
+                    {/*<tr>*/}
+                    {/*    <td>Hema</td>*/}
+                    {/*    <td>€ 45.25</td>*/}
+                    {/*    <td>24-06-2026</td>*/}
+                    {/*    <td><img src="/dots-vert.svg" alt="vertical dots"/></td>*/}
+                    {/*</tr>*/}
+                    {/*<tr>*/}
+                    {/*    <td>Hema</td>*/}
+                    {/*    <td>€ 45.25</td>*/}
+                    {/*    <td>24-06-2026</td>*/}
+                    {/*    <td><img src="/dots-vert.svg" alt="vertical dots"/></td>*/}
+                    {/*</tr>*/}
+                    {/*<tr>*/}
+                    {/*    <td>Hema</td>*/}
+                    {/*    <td>€ 45.25</td>*/}
+                    {/*    <td>24-06-2026</td>*/}
+                    {/*    <td><img src="/dots-vert.svg" alt="vertical dots"/></td>*/}
+                    {/*</tr>*/}
+                    {/*</tbody>*/}
                 </table>
 
             </section>
