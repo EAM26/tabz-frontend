@@ -1,7 +1,7 @@
 import {useState} from "react";
 import api from "../services/api.js";
 import {useAuth} from "../context/AuthContext.jsx";
-import {useLocation, useNavigate} from "react-router-dom";
+import {Link, useLocation, useNavigate} from "react-router-dom";
 
 
 
@@ -28,15 +28,17 @@ function Login() {
 
         try {
             const response = await api.post("/api/auth/authenticate", loginRequest);
+
             login(response.data.token);
-            navigate(redirectTo);
-            setMessage("Login successfull");
+
+            navigate(redirectTo, { replace: true });
         } catch (error) {
-            if(error.response?.status ===401) {
+            if (error.response?.status === 401 || error.response?.status === 403) {
                 setError("Invalid username or password");
                 return;
             }
-            setError("Something went wrong. Please try again.")
+
+            setError("Something went wrong. Please try again.");
         }
     }
 
@@ -73,6 +75,17 @@ function Login() {
                     {error && <p className="text-red-600">{error}</p>}
                     {message && <p className="text-green-700">{message}</p>}
                     <button className="bg-tabz-dark px-6 text-white" type="submit">Log in</button>
+
+                    <p className="mt-4 text-sm">
+                        Don&apos;t have an account?{" "}
+                        <Link
+                            to="/register"
+                            state={{ from: location.state?.from }}
+                            className="font-semibold text-tabz-dark"
+                        >
+                            Register
+                        </Link>
+                    </p>
                 </form>
             </div>
         </div>

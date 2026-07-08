@@ -1,11 +1,12 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useAuth } from "./context/AuthContext.jsx";
 import ProtectedRoute from "./context/ProtectedRoute.jsx";
-import Login from "./components/Login.jsx";
+import Login from "./pages/Login.jsx";
 import UserPage from "./pages/UserPage.jsx";
 import NavBarApp from "./components/NavBarApp.jsx";
 import Footer from "./components/Footer.jsx";
 import ClaimPage from "./pages/ClaimPage.jsx";
+import RegisterPage from "./pages/RegisterPage.jsx";
 
 function App() {
     const { isLoggedIn } = useAuth();
@@ -29,6 +30,10 @@ function App() {
                             element={
                                 <Login />
                             }
+                        />
+                        <Route
+                            path="/register"
+                            element={<RegisterPage />}
                         />
 
                         <Route
