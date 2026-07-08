@@ -1,10 +1,11 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useAuth } from "./context/AuthContext.jsx";
-import ProtectedRoute from "./components/ProtectedRoute.jsx";
+import ProtectedRoute from "./context/ProtectedRoute.jsx";
 import Login from "./components/Login.jsx";
-import UserPage from "./components/UserPage.jsx";
+import UserPage from "./pages/UserPage.jsx";
 import NavBarApp from "./components/NavBarApp.jsx";
 import Footer from "./components/Footer.jsx";
+import ClaimPage from "./pages/ClaimPage.jsx";
 
 function App() {
     const { isLoggedIn } = useAuth();
@@ -26,9 +27,7 @@ function App() {
                         <Route
                             path="/login"
                             element={
-                                isLoggedIn
-                                    ? <Navigate to="/user" replace />
-                                    : <Login />
+                                <Login />
                             }
                         />
 
@@ -37,6 +36,14 @@ function App() {
                             element={
                                 <ProtectedRoute>
                                     <UserPage />
+                                </ProtectedRoute>
+                            }
+                        />
+                        <Route
+                            path="/claim/:tabId"
+                            element={
+                                <ProtectedRoute>
+                                    <ClaimPage />
                                 </ProtectedRoute>
                             }
                         />

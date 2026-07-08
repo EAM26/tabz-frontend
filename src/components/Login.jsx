@@ -1,13 +1,15 @@
 import {useState} from "react";
 import api from "../services/api.js";
 import {useAuth} from "../context/AuthContext.jsx";
-import{useNavigate} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 
 
 
 function Login() {
     const { login } = useAuth();
     const navigate = useNavigate();
+    const location = useLocation();
+    const redirectTo = location.state?.from?.pathname || "/user";
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
@@ -26,9 +28,8 @@ function Login() {
 
         try {
             const response = await api.post("/api/auth/authenticate", loginRequest);
-            // localStorage.setItem("token", response.data.token);
             login(response.data.token);
-            navigate("/user")
+            navigate(redirectTo);
             setMessage("Login successfull");
         } catch (error) {
             if(error.response?.status ===401) {
@@ -37,9 +38,6 @@ function Login() {
             }
             setError("Something went wrong. Please try again.")
         }
-
-        console.log("username: " + username);
-        console.log("password: " + password);
     }
 
     return (
